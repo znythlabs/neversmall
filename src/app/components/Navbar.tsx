@@ -3,17 +3,16 @@
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 
-const NAV_ITEMS = [
-    { label: "HOME", href: "#" },
-    { label: "ABOUT", href: "#about" },
-    { label: "PROJECTS", href: "#projects" },
-    { label: "SERVICES", href: "#services" },
-    { label: "TESTIMONIALS", href: "#testimonials" },
-    { label: "CONTACT", href: "#cta" },
+const SERVICES_ITEMS = [
+    { label: "VIDEOGRAPHY", href: "#services", desc: "High-impact video production for brands, campaigns, and short-form content.", image: "/images/videography-service.jpg" },
+    { label: "PHOTOGRAPHY", desc: "Clean, professional imagery for products, lifestyle, and storytelling.", href: "#services", image: "/images/photography.jpg" },
+    { label: "SOCIAL MANAGEMENT", desc: "Strategic content planning and growth across social platforms.", href: "#services", image: "/images/social-management.jpg" },
+    { label: "META ADS", desc: "Targeted campaigns focused on reach and measurable results.", href: "#services", image: "/images/meta-ads.jpg" },
 ];
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [activeService, setActiveService] = useState(0);
 
     const toggle = useCallback(() => {
         setIsOpen((prev) => !prev);
@@ -58,7 +57,14 @@ export default function Navbar() {
                 </a>
 
                 <div className="navbar__actions">
-                    <a href="#cta" className="navbar__cta-link">GET IN TOUCH</a>
+                    <a href="#cta" className="navbar__cta-link">
+                        <span className="span-mother" aria-hidden="true">
+                            {"GET IN TOUCH".split("").map((c, i) => <span key={i} style={{ transitionDelay: `${i * 0.03}s` }}>{c === " " ? "\u00A0" : c}</span>)}
+                        </span>
+                        <span className="span-mother2" aria-hidden="true">
+                            {"GET IN TOUCH".split("").map((c, i) => <span key={i} style={{ transitionDelay: `${i * 0.03}s` }}>{c === " " ? "\u00A0" : c}</span>)}
+                        </span>
+                    </a>
                     <button
                         className={`navbar__hamburger ${isOpen ? "navbar__hamburger--active" : ""}`}
                         aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -100,21 +106,37 @@ export default function Navbar() {
                     </button>
                 </div>
 
-                <nav className="menu-overlay__nav" aria-label="Menu navigation">
-                    {NAV_ITEMS.map((item, idx) => (
-                        <a
-                            key={item.label}
-                            href={item.href}
-                            className="menu-overlay__link"
-                            onClick={close}
-                            style={{ animationDelay: `${0.05 + idx * 0.05}s` }}
-                        >
-                            <span className="menu-overlay__link-number">
-                                {String(idx + 1).padStart(2, "0")}
-                            </span>
-                            <span className="menu-overlay__link-text">{item.label}</span>
-                        </a>
-                    ))}
+                <nav className="menu-overlay__content" aria-label="Services navigation">
+                    <div className="menu-overlay__services-list">
+                        {SERVICES_ITEMS.map((item, idx) => (
+                            <a
+                                key={item.label}
+                                href={item.href}
+                                className={`menu-overlay__service-link ${activeService === idx ? 'menu-overlay__service-link--active' : ''}`}
+                                onClick={close}
+                                onMouseEnter={() => setActiveService(idx)}
+                                style={{ animationDelay: `${0.1 + idx * 0.1}s` }}
+                            >
+                                <span className="menu-overlay__service-label">{item.label}</span>
+                            </a>
+                        ))}
+                    </div>
+
+                    <div className="menu-overlay__details">
+                        {SERVICES_ITEMS.map((item, idx) => (
+                            <div key={idx} className={`menu-overlay__detail-card ${activeService === idx ? 'menu-overlay__detail-card--active' : ''}`}>
+                                <div className="menu-overlay__detail-image">
+                                    <Image src={item.image} alt={item.label} fill style={{ objectFit: 'cover' }} />
+                                </div>
+                                <div className="menu-overlay__detail-info">
+                                    <p className="menu-overlay__detail-desc">{item.desc}</p>
+                                    <a href={item.href} className="menu-overlay__detail-btn" onClick={close}>
+                                        Explore Service.
+                                    </a>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </nav>
 
                 <div className="menu-overlay__footer">

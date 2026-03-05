@@ -194,18 +194,45 @@ button {
 }
 
 .navbar__cta-link {
-  font-family: var(--font-header);
+  font-family: var(--font-subheader);
+  font-weight: 400;
   font-size: clamp(16px, 1.8vw, 22px);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
+  letter-spacing: 0.05em;
   color: var(--color-black);
   text-decoration: none;
-  transition: color 0.2s ease;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  height: clamp(24px, 2.5vw, 32px);
 }
 
-.navbar__cta-link:hover {
-  color: var(--color-blue);
+.navbar__cta-link .span-mother,
+.navbar__cta-link .span-mother2 {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar__cta-link .span-mother2 {
+  transform: translateY(100%);
+}
+
+.navbar__cta-link:hover .span-mother {
+  transform: translateY(-100%);
+}
+
+.navbar__cta-link:hover .span-mother2 {
+  transform: translateY(0);
+}
+
+.navbar__cta-link span span {
+  display: inline-block;
+  transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ============================================
@@ -260,50 +287,114 @@ button {
   transform: rotate(90deg);
 }
 
-.menu-overlay__nav {
+.menu-overlay__content {
+  display: flex;
+  margin: auto 0;
+  width: 100%;
+  min-height: 50vh;
+  gap: 80px;
+}
+
+.menu-overlay__services-list {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin: auto 0;
-  padding-left: 20px;
+  justify-content: center;
 }
 
-.menu-overlay__link {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
+.menu-overlay__service-link {
   text-decoration: none;
-  padding: 8px 0;
+  padding: 12px 0;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease, color 0.3s ease;
+  color: var(--color-black);
 }
 
-.menu-overlay--open .menu-overlay__link {
+.menu-overlay--open .menu-overlay__service-link {
   opacity: 1;
   transform: translateY(0);
 }
 
-.menu-overlay__link-number {
+.menu-overlay__service-label {
   font-family: var(--font-header);
   font-weight: 700;
-  font-size: clamp(16px, 1.8vw, 22px);
-  color: var(--color-blue);
-  min-width: 44px;
-}
-
-.menu-overlay__link-text {
-  font-family: var(--font-header);
-  font-weight: 700;
-  font-size: clamp(32px, 6vw, 72px);
-  color: var(--color-black);
+  font-size: clamp(32px, 5vw, 72px);
   text-transform: uppercase;
-  line-height: 1.1;
-  transition: color 0.2s ease;
 }
 
-.menu-overlay__link:hover .menu-overlay__link-text {
+.menu-overlay__service-link:hover,
+.menu-overlay__service-link--active {
   color: var(--color-blue);
+}
+
+/* Service Details Column */
+.menu-overlay__details {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.menu-overlay__detail-card {
+  width: 100%;
+  max-width: 500px;
+  display: none;
+  /* Hide by default */
+}
+
+/* Show only active service */
+.menu-overlay__detail-card--active {
+  display: block;
+  animation: fadeUp 0.3s ease forwards;
+}
+
+.menu-overlay__detail-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  margin-bottom: 24px;
+}
+
+.menu-overlay__detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.menu-overlay__detail-desc {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.4vw, 18px);
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+.menu-overlay__detail-btn {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-family: var(--font-header);
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--color-blue);
+  transition: opacity 0.2s ease;
+}
+
+.menu-overlay__detail-btn:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 1024px) {
+  .menu-overlay__content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .menu-overlay__details {
+    display: none;
+  }
 }
 
 .menu-overlay__footer {
@@ -399,7 +490,8 @@ button {
   height: 6px;
   border-radius: 50%;
   background-color: var(--color-black);
-  margin: 0 20px;
+  margin: 0 40px;
+  /* Increased spacing */
   flex-shrink: 0;
 }
 
