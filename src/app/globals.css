@@ -490,8 +490,8 @@ button {
   height: 6px;
   border-radius: 50%;
   background-color: var(--color-black);
-  margin: 0 40px;
-  /* Increased spacing */
+  margin: 0 24px;
+  /* Reduced spacing */
   flex-shrink: 0;
 }
 
