@@ -706,11 +706,11 @@ button {
 
 .lightbox__close {
   position: absolute;
-  top: -24px;
-  right: -24px;
+  top: 0;
+  right: 0;
   z-index: 10;
-  background: var(--color-black);
-  border: 2px solid var(--color-white);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--color-white);
   font-size: 24px;
   line-height: 1;
@@ -720,23 +720,21 @@ button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
 }
 
 .lightbox__close:hover {
   background: var(--color-white);
   color: var(--color-black);
-  transform: translate(-4px, -4px);
-  box-shadow: 4px 4px 0 var(--color-blue);
 }
 
 .lightbox__nav {
   position: absolute;
-  top: calc(50% - 30px);
+  top: calc(50% - 24px);
   transform: translateY(-50%);
   z-index: 10;
-  background: var(--color-black);
-  border: 2px solid var(--color-white);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--color-white);
   font-size: 32px;
   width: 48px;
@@ -745,15 +743,13 @@ button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
   border-radius: 0;
 }
 
 .lightbox__nav:hover {
   background: var(--color-white);
   color: var(--color-black);
-  transform: translateY(-50%) translate(-4px, -4px);
-  box-shadow: 4px 4px 0 var(--color-blue);
 }
 
 .lightbox__nav--prev {
