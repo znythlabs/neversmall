@@ -1457,26 +1457,31 @@ button {
   text-transform: uppercase;
 }
 
-.footer__nav-text-wrapper {
+.footer__nav-label-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.footer__nav-arrow {
   display: inline-flex;
-}
-
-.btn-arrow {
-  display: inline-block;
-  font-size: 1.8em;
-  /* Much bigger arrow */
-  vertical-align: middle;
-  margin-left: 8px;
+  align-items: center;
+  justify-content: center;
+  width: clamp(20px, 2vw, 32px);
+  height: clamp(20px, 2vw, 32px);
   opacity: 0;
-  transform: translate(-10px, 10px);
+  transform: translate(-5px, 5px);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  color: inherit;
-  line-height: 1;
+  color: var(--color-black);
 }
 
-.animated-link:hover .btn-arrow,
-.animated-text:hover .btn-arrow,
-.footer__nav-item:hover .btn-arrow {
+.footer__nav-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.footer__nav-item:hover .footer__nav-arrow {
   opacity: 1;
   transform: translate(0, 0);
 }

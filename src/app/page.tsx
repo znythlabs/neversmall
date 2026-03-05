@@ -47,7 +47,6 @@ const AnimatedLink = ({ href, text, className }: { href: string; text: string; c
           </span>
         ))}
       </span>
-      <span className="btn-arrow" aria-hidden="true">↗</span>
       <span className="sr-only">{text}</span>
     </a>
   );
@@ -70,7 +69,6 @@ const AnimatedText = ({ text, className }: { text: string; className?: string })
           </span>
         ))}
       </span>
-      <span className="btn-arrow" aria-hidden="true">↗</span>
       <span className="sr-only">{text}</span>
     </span>
   );
@@ -263,27 +261,69 @@ export default function Home() {
           <nav className="footer__nav" aria-label="Footer navigation">
             <a href="#" className="footer__nav-item">
               <span className="footer__nav-number">01</span>
-              <AnimatedText className="footer__nav-label" text="HOME" />
+              <div className="footer__nav-label-wrapper">
+                <AnimatedText className="footer__nav-label" text="HOME" />
+                <span className="footer__nav-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </div>
             </a>
             <a href="#about" className="footer__nav-item">
               <span className="footer__nav-number">02</span>
-              <AnimatedText className="footer__nav-label" text="ABOUT" />
+              <div className="footer__nav-label-wrapper">
+                <AnimatedText className="footer__nav-label" text="ABOUT" />
+                <span className="footer__nav-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </div>
             </a>
             <a href="#projects" className="footer__nav-item">
               <span className="footer__nav-number">03</span>
-              <AnimatedText className="footer__nav-label" text="PROJECTS" />
+              <div className="footer__nav-label-wrapper">
+                <AnimatedText className="footer__nav-label" text="PROJECTS" />
+                <span className="footer__nav-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </div>
             </a>
             <a href="#services" className="footer__nav-item">
               <span className="footer__nav-number">04</span>
-              <AnimatedText className="footer__nav-label" text="SERVICES" />
+              <div className="footer__nav-label-wrapper">
+                <AnimatedText className="footer__nav-label" text="SERVICES" />
+                <span className="footer__nav-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </div>
             </a>
             <a href="#testimonials" className="footer__nav-item">
               <span className="footer__nav-number">05</span>
-              <AnimatedText className="footer__nav-label" text="TESTIMONIALS" />
+              <div className="footer__nav-label-wrapper">
+                <AnimatedText className="footer__nav-label" text="TESTIMONIALS" />
+                <span className="footer__nav-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </div>
             </a>
             <a href="#cta" className="footer__nav-item">
               <span className="footer__nav-number">06</span>
-              <AnimatedText className="footer__nav-label" text="CONTACT" />
+              <div className="footer__nav-label-wrapper">
+                <AnimatedText className="footer__nav-label" text="CONTACT" />
+                <span className="footer__nav-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </div>
             </a>
           </nav>
 
