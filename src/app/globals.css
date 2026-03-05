@@ -1073,6 +1073,10 @@ button {
   gap: 4px;
 }
 
+.testimonials__stars svg {
+  fill: var(--color-yellow) !important;
+}
+
 /* ============================================
    UI ANIMATIONS
    ============================================ */
@@ -1459,8 +1463,8 @@ button {
 
 .btn-arrow {
   display: inline-block;
-  font-size: 1.2em;
-  /* Bigger arrow */
+  font-size: 1.8em;
+  /* Much bigger arrow */
   vertical-align: middle;
   margin-left: 8px;
   opacity: 0;
