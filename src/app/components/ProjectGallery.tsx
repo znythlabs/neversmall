@@ -105,7 +105,10 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
                             onClick={closeModal}
                             aria-label="Close lightbox"
                         >
-                            ✕
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
                         </button>
 
                         {/* Previous */}
@@ -114,7 +117,9 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
                             onClick={goPrev}
                             aria-label="Previous project"
                         >
-                            ‹
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '2px' }}>
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
                         </button>
 
                         {/* Image */}
@@ -135,7 +140,9 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
                             onClick={goNext}
                             aria-label="Next project"
                         >
-                            ›
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '2px' }}>
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
                         </button>
 
                         {/* Info bar */}

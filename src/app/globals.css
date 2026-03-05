@@ -706,14 +706,12 @@ button {
 
 .lightbox__close {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 24px;
+  right: 24px;
   z-index: 10;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--color-white);
-  font-size: 24px;
-  line-height: 1;
   width: 48px;
   height: 48px;
   display: flex;
@@ -730,13 +728,12 @@ button {
 
 .lightbox__nav {
   position: absolute;
-  top: calc(50% - 24px);
+  top: 50%;
   transform: translateY(-50%);
   z-index: 10;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--color-white);
-  font-size: 32px;
   width: 48px;
   height: 48px;
   display: flex;
@@ -807,7 +804,6 @@ button {
   .lightbox__nav {
     width: 40px;
     height: 40px;
-    font-size: 24px;
   }
 
   .lightbox__image-wrapper {
@@ -830,7 +826,6 @@ button {
   .lightbox__nav {
     width: 36px;
     height: 36px;
-    font-size: 20px;
   }
 
   .lightbox__image-wrapper {
@@ -850,9 +845,10 @@ button {
   }
 
   .lightbox__close {
-    font-size: 22px;
     width: 40px;
     height: 40px;
+    top: 16px;
+    right: 16px;
   }
 }
 
