@@ -178,9 +178,7 @@ export default function Home() {
         <div className="projects__header">
           <h2 className="projects__title">PROJECTS</h2>
           <p className="projects__desc">
-            A selection of campaigns, content, and<br />
-            creative work produced for brands across<br />
-            video, photography, and digital marketing.
+            A selection of campaigns, content, and creative work produced for brands across video, photography, and digital marketing.
           </p>
           <span className="projects__tag">(featured work)</span>
         </div>
@@ -200,9 +198,7 @@ export default function Home() {
             CREATIVE SUPPORT.
           </h2>
           <p className="services__desc">
-            Strategy, production, and<br />
-            performance marketing - all handled<br />
-            in one place.
+            Strategy, production, and performance marketing - all handled in one place.
           </p>
         </div>
 
@@ -229,7 +225,7 @@ export default function Home() {
         </h2>
 
         <div className="cta__content">
-          <p className="cta__subhead">Don&apos;t sell<br />yourself short.</p>
+          <p className="cta__subhead">Don&apos;t sell yourself short.</p>
           <AnimatedLink href="#project" className="cta__button" text="START A PROJECT" />
         </div>
       </section>
@@ -309,12 +305,10 @@ export default function Home() {
           <div className="footer__contact">
             <h3 className="footer__contact-headline">LET&apos;S WORK TOGETHER.</h3>
             <p className="footer__contact-desc">
-              Tell us about your brand, your<br />
-              goals, and what you&apos;re building.
+              Tell us about your brand, your goals, and what you&apos;re building.
             </p>
             <p className="footer__contact-desc">
-              We&apos;ll help turn it into<br />
-              something impactful.
+              We&apos;ll help turn it into something impactful.
             </p>
 
             <div className="footer__contact-info">
@@ -379,8 +373,7 @@ export default function Home() {
             className="footer__logo-overlay"
           />
           <p className="footer__banner-desc">
-            Creative studio delivering strategy, content production, and<br />
-            performance marketing for modern brands.
+            Creative studio delivering strategy, content production, and performance marketing for modern brands.
           </p>
         </div>
 
