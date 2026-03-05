@@ -39,34 +39,18 @@ export default function Projects() {
             {/* Header Section */}
             <section className="projects-page__header">
                 <div className="projects-page__header-grid">
-                    {/* Title Column */}
                     <div>
-                        <h1 style={{
-                            fontFamily: "var(--font-header)",
-                            fontSize: "clamp(48px, 6vw, 100px)",
-                            lineHeight: 0.9,
-                            letterSpacing: "-0.03em",
-                            textTransform: "uppercase",
-                            color: "var(--color-black)"
-                        }}>
-                            Selected<br />Works
+                        <h1 className="projects-page__title">
+                            SELECTED<br />WORKS
                         </h1>
                     </div>
 
-                    {/* Description Column (Center) */}
-                    <div>
-                        <p style={{
-                            fontFamily: "var(--font-body)",
-                            fontSize: "clamp(16px, 1.4vw, 20px)",
-                            lineHeight: 1.5,
-                            color: "var(--color-black)",
-                            maxWidth: "480px"
-                        }}>
+                    <div className="projects-page__header-desc-col">
+                        <p className="projects-page__desc">
                             A selection of campaigns, content, and creative work produced for brands across video, photography, and digital marketing.
                         </p>
                     </div>
 
-                    {/* Button Column (Right) */}
                     <div className="projects-page__header-cta">
                         <AnimatedLink href="/contact" className="cta__button" text="START A PROJECT" />
                     </div>
@@ -76,88 +60,51 @@ export default function Projects() {
             {/* Projects Grid Section */}
             <section className="projects-page__grid-section">
                 <div className="projects-page__grid">
-
-                    {/* Col 1: Veiled Motion */}
+                    {/* Item 1: Veiled Motion (Top Aligned) */}
                     <div className="projects-page__item">
-                        <div style={{ position: "relative", width: "100%", aspectRatio: "3/4", overflow: "hidden" }}>
-                            <Image
-                                src={ALL_PROJECTS[0].image}
-                                alt={ALL_PROJECTS[0].title}
-                                fill
-                                style={{ objectFit: "cover" }}
-                            />
+                        <div className="projects-page__image-wrapper">
+                            <Image src={ALL_PROJECTS[0].image} alt={ALL_PROJECTS[0].title} fill style={{ objectFit: "cover" }} />
                         </div>
                         <div className="projects-page__item-content">
-                            <h3 style={{ fontFamily: "var(--font-subheader)", fontSize: "24px", fontWeight: 700, textTransform: "uppercase", marginBottom: "8px" }}>{ALL_PROJECTS[0].title}</h3>
-                            <p style={{ fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.5, color: "var(--color-black)", marginBottom: "16px" }}>{ALL_PROJECTS[0].description}</p>
-                            <AnimatedLink
-                                href={`/projects/${ALL_PROJECTS[0].slug}`}
-                                text="View Project"
-                                style={{ fontFamily: "var(--font-subheader)", fontSize: "15px", fontWeight: 700, textTransform: "uppercase", textDecoration: "none", color: "var(--color-black)" }}
-                            />
+                            <h3 className="projects-page__item-title">{ALL_PROJECTS[0].title}</h3>
+                            <p className="projects-page__item-desc">{ALL_PROJECTS[0].description}</p>
+                            <AnimatedLink href={`/projects/${ALL_PROJECTS[0].slug}`} text="VIEW PROJECT" />
                         </div>
                     </div>
 
-                    {/* Col 2: Endless Path (Offset) */}
-                    <div className="projects-page__item projects-page__item-offset projects-page__item-offset--large">
-                        <div style={{ position: "relative", width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
-                            <Image
-                                src={ALL_PROJECTS[1].image}
-                                alt={ALL_PROJECTS[1].title}
-                                fill
-                                style={{ objectFit: "cover" }}
-                            />
+                    {/* Item 2: Endless Path (Large Offset) */}
+                    <div className="projects-page__item projects-page__item--offset-large">
+                        <div className="projects-page__image-wrapper" style={{ aspectRatio: "4/3" }}>
+                            <Image src={ALL_PROJECTS[1].image} alt={ALL_PROJECTS[1].title} fill style={{ objectFit: "cover" }} />
                         </div>
                         <div className="projects-page__item-content">
-                            <h3 style={{ fontFamily: "var(--font-subheader)", fontSize: "24px", fontWeight: 700, textTransform: "uppercase", marginBottom: "8px" }}>{ALL_PROJECTS[1].title}</h3>
-                            <p style={{ fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.5, color: "var(--color-black)", marginBottom: "16px" }}>{ALL_PROJECTS[1].description}</p>
-                            <AnimatedLink
-                                href={`/projects/${ALL_PROJECTS[1].slug}`}
-                                text="View Project"
-                                style={{ fontFamily: "var(--font-subheader)", fontSize: "15px", fontWeight: 700, textTransform: "uppercase", textDecoration: "none", color: "var(--color-black)" }}
-                            />
+                            <h3 className="projects-page__item-title">{ALL_PROJECTS[1].title}</h3>
+                            <p className="projects-page__item-desc">{ALL_PROJECTS[1].description}</p>
+                            <AnimatedLink href={`/projects/${ALL_PROJECTS[1].slug}`} text="VIEW PROJECT" />
                         </div>
                     </div>
 
-                    {/* Col 3: Celestial Drift (Offset) */}
-                    <div className="projects-page__item projects-page__item-offset projects-page__item-offset--medium">
-                        <div style={{ position: "relative", width: "100%", aspectRatio: "4/5", overflow: "hidden" }}>
-                            <Image
-                                src={ALL_PROJECTS[2].image}
-                                alt={ALL_PROJECTS[2].title}
-                                fill
-                                style={{ objectFit: "cover" }}
-                            />
+                    {/* Item 3: Celestial Drift (Small Offset) */}
+                    <div className="projects-page__item projects-page__item--offset-small">
+                        <div className="projects-page__image-wrapper" style={{ aspectRatio: "4/5" }}>
+                            <Image src={ALL_PROJECTS[2].image} alt={ALL_PROJECTS[2].title} fill style={{ objectFit: "cover" }} />
                         </div>
                         <div className="projects-page__item-content">
-                            <h3 style={{ fontFamily: "var(--font-subheader)", fontSize: "24px", fontWeight: 700, textTransform: "uppercase", marginBottom: "8px" }}>{ALL_PROJECTS[2].title}</h3>
-                            <p style={{ fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.5, color: "var(--color-black)", marginBottom: "16px" }}>{ALL_PROJECTS[2].description}</p>
-                            <AnimatedLink
-                                href={`/projects/${ALL_PROJECTS[2].slug}`}
-                                text="View Project"
-                                style={{ fontFamily: "var(--font-subheader)", fontSize: "15px", fontWeight: 700, textTransform: "uppercase", textDecoration: "none", color: "var(--color-black)" }}
-                            />
+                            <h3 className="projects-page__item-title">{ALL_PROJECTS[2].title}</h3>
+                            <p className="projects-page__item-desc">{ALL_PROJECTS[2].description}</p>
+                            <AnimatedLink href={`/projects/${ALL_PROJECTS[2].slug}`} text="VIEW PROJECT" />
                         </div>
                     </div>
 
-                    {/* Col 4: Shadow Gaze */}
+                    {/* Item 4: Shadow Gaze (Top Aligned) */}
                     <div className="projects-page__item">
-                        <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", overflow: "hidden" }}>
-                            <Image
-                                src={ALL_PROJECTS[3].image}
-                                alt={ALL_PROJECTS[3].title}
-                                fill
-                                style={{ objectFit: "cover" }}
-                            />
+                        <div className="projects-page__image-wrapper" style={{ aspectRatio: "1/1" }}>
+                            <Image src={ALL_PROJECTS[3].image} alt={ALL_PROJECTS[3].title} fill style={{ objectFit: "cover" }} />
                         </div>
                         <div className="projects-page__item-content">
-                            <h3 style={{ fontFamily: "var(--font-subheader)", fontSize: "24px", fontWeight: 700, textTransform: "uppercase", marginBottom: "8px" }}>{ALL_PROJECTS[3].title}</h3>
-                            <p style={{ fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.5, color: "var(--color-black)", marginBottom: "16px" }}>{ALL_PROJECTS[3].description}</p>
-                            <AnimatedLink
-                                href={`/projects/${ALL_PROJECTS[3].slug}`}
-                                text="View Project"
-                                style={{ fontFamily: "var(--font-subheader)", fontSize: "15px", fontWeight: 700, textTransform: "uppercase", textDecoration: "none", color: "var(--color-black)" }}
-                            />
+                            <h3 className="projects-page__item-title">{ALL_PROJECTS[3].title}</h3>
+                            <p className="projects-page__item-desc">{ALL_PROJECTS[3].description}</p>
+                            <AnimatedLink href={`/projects/${ALL_PROJECTS[3].slug}`} text="VIEW PROJECT" />
                         </div>
                     </div>
                 </div>

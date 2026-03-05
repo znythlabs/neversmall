@@ -83,19 +83,20 @@ export default function Navbar() {
                 </a>
 
                 <div className="navbar__actions">
-                    {!isHomePage && (
-                        <div className="navbar__links">
-                            <a href="/about" className="navbar__link animated-link">
-                                <SplitText text="ABOUT" />
-                            </a>
-                            <a href="/projects" className="navbar__link animated-link">
-                                <SplitText text="PROJECTS" />
-                            </a>
-                            <a href="/#services" className="navbar__link animated-link">
-                                <SplitText text="SERVICES" />
-                            </a>
-                        </div>
-                    )}
+                    <div className="navbar__links">
+                        <a href="/#about" className="navbar__link animated-link">
+                            <SplitText text="ABOUT" />
+                        </a>
+                        <a href="/projects" className="navbar__link animated-link">
+                            <SplitText text="PROJECTS" />
+                        </a>
+                        <a href="/#services" className="navbar__link animated-link">
+                            <SplitText text="SERVICES" />
+                        </a>
+                        <a href="/#testimonials" className="navbar__link animated-link">
+                            <SplitText text="TESTIMONIALS" />
+                        </a>
+                    </div>
                     <a href="/contact" className="navbar__cta-link animated-link">
                         <SplitText text="GET IN TOUCH" />
                     </a>
@@ -140,38 +141,60 @@ export default function Navbar() {
                     </button>
                 </div>
 
-                <nav className="menu-overlay__content" aria-label="Services navigation">
-                    <div className="menu-overlay__services-list">
-                        {SERVICES_ITEMS.map((item, idx) => (
-                            <a
-                                key={item.label}
-                                href={item.href}
-                                className={`menu-overlay__service-link ${activeService === idx ? 'menu-overlay__service-link--active' : ''}`}
-                                onClick={close}
-                                onMouseEnter={() => setActiveService(idx)}
-                                style={{ animationDelay: `${0.1 + idx * 0.1}s` }}
-                            >
-                                <span className="menu-overlay__service-label">
-                                    <SplitText text={item.label} />
-                                </span>
-                            </a>
-                        ))}
+                <nav className="menu-overlay__content">
+                    {/* Desktop: Services View */}
+                    <div className="menu-overlay__services-desktop">
+                        <div className="menu-overlay__services-list">
+                            {SERVICES_ITEMS.map((item, idx) => (
+                                <a
+                                    key={item.label}
+                                    href={item.href}
+                                    className={`menu-overlay__service-link animated-link ${activeService === idx ? 'menu-overlay__service-link--active' : ''}`}
+                                    onClick={close}
+                                    onMouseEnter={() => setActiveService(idx)}
+                                    style={{ animationDelay: `${0.1 + idx * 0.1}s` }}
+                                >
+                                    <span className="menu-overlay__service-label">
+                                        <SplitText text={item.label} />
+                                    </span>
+                                </a>
+                            ))}
+                        </div>
+
+                        <div className="menu-overlay__details">
+                            {SERVICES_ITEMS.map((item, idx) => (
+                                <div key={idx} className={`menu-overlay__detail-card ${activeService === idx ? 'menu-overlay__detail-card--active' : ''}`}>
+                                    <div className="menu-overlay__detail-image">
+                                        <Image src={item.image} alt={item.label} fill style={{ objectFit: 'cover' }} />
+                                    </div>
+                                    <div className="menu-overlay__detail-info">
+                                        <p className="menu-overlay__detail-desc">{item.desc}</p>
+                                        <a href={item.href} className="menu-overlay__detail-btn animated-link" onClick={close}>
+                                            <SplitText text="EXPLORE SERVICE" />
+                                        </a>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="menu-overlay__details">
-                        {SERVICES_ITEMS.map((item, idx) => (
-                            <div key={idx} className={`menu-overlay__detail-card ${activeService === idx ? 'menu-overlay__detail-card--active' : ''}`}>
-                                <div className="menu-overlay__detail-image">
-                                    <Image src={item.image} alt={item.label} fill style={{ objectFit: 'cover' }} />
-                                </div>
-                                <div className="menu-overlay__detail-info">
-                                    <p className="menu-overlay__detail-desc">{item.desc}</p>
-                                    <a href={item.href} className="menu-overlay__detail-btn animated-link" onClick={close}>
-                                        <SplitText text="EXPLORE SERVICE" />
-                                    </a>
-                                </div>
-                            </div>
-                        ))}
+                    {/* Mobile: Page Navigation */}
+                    <div className="menu-overlay__navigation-mobile">
+                        <a href="/#about" className="menu-overlay__nav-link animated-link" onClick={close}>
+                            <SplitText text="ABOUT" />
+                        </a>
+                        <a href="/projects" className="menu-overlay__nav-link animated-link" onClick={close}>
+                            <SplitText text="PROJECTS" />
+                        </a>
+                        <a href="/#services" className="menu-overlay__nav-link animated-link" onClick={close}>
+                            <SplitText text="SERVICES" />
+                        </a>
+                        <a href="/#testimonials" className="menu-overlay__nav-link animated-link" onClick={close}>
+                            <SplitText text="TESTIMONIALS" />
+                        </a>
+                        <a href="/contact" className="menu-overlay__nav-link animated-link" onClick={close}>
+                            <SplitText text="CONTACT" />
+                        </a>
                     </div>
                 </nav>
 
