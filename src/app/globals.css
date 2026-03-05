@@ -701,41 +701,42 @@ button {
   width: 90vw;
   height: 90vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .lightbox__close {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -24px;
+  right: -24px;
   z-index: 10;
-  background: none;
-  border: none;
+  background: var(--color-black);
+  border: 2px solid var(--color-white);
   color: var(--color-white);
-  font-size: 28px;
+  font-size: 24px;
+  line-height: 1;
   width: 48px;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  opacity: 0.7;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .lightbox__close:hover {
-  opacity: 1;
-  transform: scale(1.15);
+  background: var(--color-white);
+  color: var(--color-black);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 var(--color-blue);
 }
 
 .lightbox__nav {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 30px);
   transform: translateY(-50%);
   z-index: 10;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--color-black);
+  border: 2px solid var(--color-white);
   color: var(--color-white);
   font-size: 32px;
   width: 48px;
@@ -744,13 +745,15 @@ button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 0;
 }
 
 .lightbox__nav:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: var(--color-white);
+  color: var(--color-black);
+  transform: translateY(-50%) translate(-4px, -4px);
+  box-shadow: 4px 4px 0 var(--color-blue);
 }
 
 .lightbox__nav--prev {
@@ -764,15 +767,16 @@ button {
 .lightbox__image-wrapper {
   position: relative;
   width: calc(100% - 120px);
-  height: calc(100% - 80px);
-  margin: 0 60px;
+  margin: 0 auto;
+  flex: 1;
+  /* Fills remaining height, avoiding bottom overlap */
+  min-height: 0;
+  /* Important for flex children with image to shrink */
 }
 
 .lightbox__info {
-  position: absolute;
-  bottom: 0;
-  left: 60px;
-  right: 60px;
+  width: calc(100% - 120px);
+  margin: 24px auto 0 auto;
   display: flex;
   align-items: baseline;
   gap: 16px;
@@ -791,7 +795,7 @@ button {
 .lightbox__info-title {
   font-family: var(--font-header);
   font-weight: 700;
-  font-size: 20px;
+  font-size: clamp(16px, 2vw, 24px);
   color: var(--color-white);
   text-transform: uppercase;
   flex: 1;
@@ -811,13 +815,13 @@ button {
   }
 
   .lightbox__image-wrapper {
-    width: calc(100% - 80px);
-    margin: 0 40px;
+    width: 100%;
+    margin: 0;
   }
 
   .lightbox__info {
-    left: 40px;
-    right: 40px;
+    width: 100%;
+    margin-top: 16px;
     gap: 10px;
   }
 
@@ -834,13 +838,13 @@ button {
   }
 
   .lightbox__image-wrapper {
-    width: calc(100% - 56px);
-    margin: 0 28px;
+    width: 100%;
+    margin: 0;
   }
 
   .lightbox__info {
-    left: 28px;
-    right: 28px;
+    width: 100%;
+    margin-top: 16px;
     flex-wrap: wrap;
     gap: 6px;
   }
