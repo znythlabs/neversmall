@@ -1457,19 +1457,22 @@ button {
   display: inline-flex;
 }
 
-.footer__arrow {
-  font-size: 0.6em;
-  font-family: var(--font-header);
-  font-weight: 700;
-  color: var(--color-black);
+.btn-arrow {
+  display: inline-block;
+  font-size: 1.2em;
+  /* Bigger arrow */
+  vertical-align: middle;
   margin-left: 8px;
-  vertical-align: super;
   opacity: 0;
-  transform: translate(-5px, 5px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate(-10px, 10px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  color: inherit;
+  line-height: 1;
 }
 
-.footer__nav-item:hover .footer__arrow {
+.animated-link:hover .btn-arrow,
+.animated-text:hover .btn-arrow,
+.footer__nav-item:hover .btn-arrow {
   opacity: 1;
   transform: translate(0, 0);
 }

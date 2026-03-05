@@ -47,6 +47,7 @@ const AnimatedLink = ({ href, text, className }: { href: string; text: string; c
           </span>
         ))}
       </span>
+      <span className="btn-arrow" aria-hidden="true">↗</span>
       <span className="sr-only">{text}</span>
     </a>
   );
@@ -69,6 +70,7 @@ const AnimatedText = ({ text, className }: { text: string; className?: string })
           </span>
         ))}
       </span>
+      <span className="btn-arrow" aria-hidden="true">↗</span>
       <span className="sr-only">{text}</span>
     </span>
   );
@@ -265,10 +267,7 @@ export default function Home() {
             </a>
             <a href="#about" className="footer__nav-item">
               <span className="footer__nav-number">02</span>
-              <span className="footer__nav-text-wrapper">
-                <AnimatedText className="footer__nav-label" text="ABOUT" />
-                <span className="footer__arrow" aria-hidden="true">↗</span>
-              </span>
+              <AnimatedText className="footer__nav-label" text="ABOUT" />
             </a>
             <a href="#projects" className="footer__nav-item">
               <span className="footer__nav-number">03</span>
