@@ -94,6 +94,8 @@ body {
   color: var(--color-black);
   background-color: var(--color-white);
   font-family: var(--font-body);
+  font-size: 18px;
+  /* Set baseline body size */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -193,7 +195,7 @@ button {
 
 .navbar__cta-link {
   font-family: var(--font-header);
-  font-size: clamp(14px, 1.5vw, 18px);
+  font-size: clamp(16px, 1.8vw, 22px);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 700;
@@ -366,7 +368,7 @@ button {
 
 .hero__tagline {
   font-family: var(--font-subheader);
-  font-size: clamp(14px, 1.5vw, 18px);
+  font-size: clamp(16px, 1.8vw, 22px);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-black);
@@ -380,7 +382,7 @@ button {
 
 .hero__nav-link {
   font-family: var(--font-subheader);
-  font-size: clamp(14px, 1.5vw, 18px);
+  font-size: clamp(16px, 1.8vw, 22px);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-black);
@@ -446,7 +448,7 @@ button {
 .marquee__text {
   font-family: var(--font-subheader);
   font-weight: 400;
-  font-size: clamp(16px, 2vw, 24px);
+  font-size: clamp(20px, 2.5vw, 28px);
   text-transform: uppercase;
   color: var(--color-white);
   letter-spacing: 0.08em;
@@ -531,7 +533,7 @@ button {
 .about__body {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: clamp(14px, 1.5vw, 16px);
+  font-size: clamp(16px, 1.6vw, 20px);
   line-height: 1.5;
   color: var(--color-black);
 }
@@ -905,10 +907,10 @@ button {
 .services__desc {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: clamp(14px, 1.4vw, 16px);
+  font-size: clamp(16px, 1.5vw, 20px);
   line-height: 1.6;
   color: var(--color-black);
-  max-width: 400px;
+  max-width: 440px;
   /* align to the text baseline of the bold headline */
   padding-bottom: 12px;
 }
@@ -967,7 +969,7 @@ button {
 
 .service-item__desc {
   font-family: var(--font-body);
-  font-size: clamp(14px, 1.4vw, 16px);
+  font-size: clamp(16px, 1.5vw, 20px);
   line-height: 1.5;
   max-width: 440px;
 }
@@ -1188,7 +1190,7 @@ button {
 .testimonials__card-body {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: clamp(14px, 1.4vw, 16px);
+  font-size: clamp(18px, 1.6vw, 22px);
   line-height: 1.8;
   color: var(--color-white);
   animation: fadeUp 0.5s ease forwards;
@@ -1598,15 +1600,15 @@ button {
 .footer__nav-number {
   font-family: var(--font-header);
   font-weight: 700;
-  font-size: clamp(24px, 4vw, 48px);
+  font-size: clamp(28px, 4.5vw, 56px);
   color: var(--color-blue);
-  min-width: 56px;
+  min-width: 64px;
 }
 
 .footer__nav-label {
   font-family: var(--font-header);
   font-weight: 700;
-  font-size: clamp(24px, 4vw, 48px);
+  font-size: clamp(28px, 4.5vw, 56px);
   line-height: 1.2;
   color: var(--color-black);
   text-transform: uppercase;
