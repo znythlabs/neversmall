@@ -177,12 +177,28 @@ button {
 
 .navbar__hamburger span {
   display: block;
-  height: 2.5px;
+  height: 2px;
   width: 100%;
   background-color: var(--color-black);
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: center;
+}
+
+.navbar__hamburger:hover span:first-child {
+  transform: translateX(4px);
+}
+
+.navbar__hamburger:hover span:last-child {
+  transform: translateX(-4px);
+}
+
+.navbar__hamburger--active:hover span:first-child {
+  transform: rotate(45deg) translate(2px, 2px) scale(1.1);
+}
+
+.navbar__hamburger--active:hover span:last-child {
+  transform: rotate(-45deg) translate(2px, -2px) scale(1.1);
 }
 
 .navbar__hamburger--active span:first-child {
@@ -196,18 +212,24 @@ button {
 .navbar__cta-link {
   font-family: var(--font-subheader);
   font-weight: 400;
-  font-size: clamp(16px, 1.8vw, 22px);
+  font-size: clamp(16px, 1.8vw, 20px);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: var(--color-black);
   text-decoration: none;
-  display: block;
+  display: inline-flex;
+  align-items: center;
   overflow: hidden;
   position: relative;
-  height: clamp(24px, 2.5vw, 32px);
+  margin-top: 2px;
 }
 
-.navbar__cta-link .span-mother,
+.navbar__cta-link .span-mother {
+  display: flex;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .navbar__cta-link .span-mother2 {
   display: flex;
   position: absolute;
@@ -216,10 +238,11 @@ button {
   width: 100%;
   height: 100%;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(100%);
 }
 
-.navbar__cta-link .span-mother2 {
-  transform: translateY(100%);
+.navbar__cta-link:hover {
+  color: var(--color-blue);
 }
 
 .navbar__cta-link:hover .span-mother {
@@ -405,20 +428,42 @@ button {
 }
 
 .menu-overlay__detail-btn {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  padding: 12px 24px;
+  font-family: var(--font-header);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 14px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  background-color: var(--color-blue);
-  color: var(--color-white);
-  font-family: var(--font-header);
-  font-weight: 700;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-decoration: none;
-  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
+  width: 100%;
+  margin-top: 16px;
+  position: relative;
+  overflow: hidden;
+  height: 48px;
+}
+
+.menu-overlay__detail-btn .span-mother span,
+.menu-overlay__detail-btn .span-mother2 span {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menu-overlay__detail-btn .span-mother2 span {
+  transform: translateY(1.2em);
+}
+
+.menu-overlay__detail-btn:hover .span-mother span {
+  transform: translateY(-1.2em);
+}
+
+.menu-overlay__detail-btn:hover .span-mother2 span {
+  transform: translateY(0);
 }
 
 .menu-overlay__detail-btn:hover {

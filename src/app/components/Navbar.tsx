@@ -13,10 +13,18 @@ const SERVICES_ITEMS = [
 const SplitText = ({ text }: { text: string }) => (
     <>
         <span className="span-mother" aria-hidden="true">
-            {text.split("").map((c, i) => <span key={i} style={{ transitionDelay: `${i * 0.03}s` }}>{c === " " ? "\u00A0" : c}</span>)}
+            {text.split("").map((c, i) => (
+                <span key={i} style={{ transition: `${0.2 + i * 0.05}s` }}>
+                    {c === " " ? "\u00A0" : c}
+                </span>
+            ))}
         </span>
         <span className="span-mother2" aria-hidden="true">
-            {text.split("").map((c, i) => <span key={i} style={{ transitionDelay: `${i * 0.03}s` }}>{c === " " ? "\u00A0" : c}</span>)}
+            {text.split("").map((c, i) => (
+                <span key={i} style={{ transition: `${0.2 + i * 0.05}s` }}>
+                    {c === " " ? "\u00A0" : c}
+                </span>
+            ))}
         </span>
         <span className="sr-only">{text}</span>
     </>
@@ -69,13 +77,8 @@ export default function Navbar() {
                 </a>
 
                 <div className="navbar__actions">
-                    <a href="#cta" className="navbar__cta-link">
-                        <span className="span-mother" aria-hidden="true">
-                            {"GET IN TOUCH".split("").map((c, i) => <span key={i} style={{ transitionDelay: `${i * 0.03}s` }}>{c === " " ? "\u00A0" : c}</span>)}
-                        </span>
-                        <span className="span-mother2" aria-hidden="true">
-                            {"GET IN TOUCH".split("").map((c, i) => <span key={i} style={{ transitionDelay: `${i * 0.03}s` }}>{c === " " ? "\u00A0" : c}</span>)}
-                        </span>
+                    <a href="/#cta" className="navbar__cta-link animated-link">
+                        <SplitText text="GET IN TOUCH" />
                     </a>
                     <button
                         className={`navbar__hamburger ${isOpen ? "navbar__hamburger--active" : ""}`}
