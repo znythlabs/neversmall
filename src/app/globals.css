@@ -452,8 +452,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 80px;
+  flex-wrap: nowrap;
+  column-gap: 40px;
+  row-gap: 12px;
   padding-bottom: 10px;
 }
 
@@ -490,8 +491,8 @@ button {
   height: 6px;
   border-radius: 50%;
   background-color: var(--color-black);
-  margin: 0 24px;
-  /* Reduced spacing */
+  margin: 0 16px;
+  /* Tightened spacing */
   flex-shrink: 0;
 }
 
