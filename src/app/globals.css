@@ -2248,6 +2248,10 @@ button {
     gap: 40px !important;
   }
 
+  .projects-page__grid-section {
+    padding: 0 20px 80px !important;
+  }
+
   .projects-page__item--offset {
     margin-top: 0 !important;
   }

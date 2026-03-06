@@ -1,33 +1,65 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import AnimatedLink from "../components/AnimatedLink";
+
+const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+    }
+};
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.1
+        }
+    }
+};
 
 export default function About() {
     return (
         <main className="page-wrapper about-page" style={{ backgroundColor: "#F6F6F6" }}>
             {/* ── Hero Section ── */}
             <section className="about-page__hero">
-                <div className="about-page__hero-grid">
+                <motion.div
+                    className="about-page__hero-grid"
+                    initial="hidden"
+                    animate="visible"
+                    variants={staggerContainer}
+                >
                     {/* Left content: Large text + Signature */}
                     <div style={{ position: "relative", zIndex: 2 }}>
-                        <h1 style={{
-                            fontFamily: "var(--font-header)",
-                            fontSize: "clamp(48px, 8vw, 90px)",
-                            lineHeight: 1,
-                            letterSpacing: "-0.04em",
-                            textTransform: "uppercase",
-                            color: "var(--color-black)",
-                            marginBottom: "40px",
-                            maxWidth: "800px"
-                        }}>
+                        <motion.h1
+                            variants={fadeInUp}
+                            style={{
+                                fontFamily: "var(--font-header)",
+                                fontSize: "clamp(48px, 8vw, 90px)",
+                                lineHeight: 1,
+                                letterSpacing: "-0.04em",
+                                textTransform: "uppercase",
+                                color: "var(--color-black)",
+                                marginBottom: "40px",
+                                maxWidth: "800px"
+                            }}>
                             NEVERSMALL STUDIO — <br />
                             WHERE IDEAS <br />
                             TRULY SCALE.
-                        </h1>
+                        </motion.h1>
 
                         {/* Styled "Signature" placeholder */}
-                        <div style={{
-                            marginTop: "20px",
-                        }}>
+                        <motion.div
+                            variants={fadeInUp}
+                            style={{
+                                marginTop: "20px",
+                            }}>
                             <span style={{
                                 fontFamily: "var(--font-subheader)",
                                 fontSize: "clamp(24px, 3vw, 42px)",
@@ -39,11 +71,13 @@ export default function About() {
                             }}>
                                 ~ Neversmall Studio
                             </span>
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* Right content: Portrait Image */}
-                    <div style={{ position: "relative", width: "100%", aspectRatio: "4/5", overflow: "hidden" }}>
+                    <motion.div
+                        variants={fadeInUp}
+                        style={{ position: "relative", width: "100%", aspectRatio: "4/5", overflow: "hidden" }}>
                         <Image
                             src="/images/about_image.jpg" // Using existing about image as portrait
                             alt="The creative face behind Neversmall Studios"
@@ -51,16 +85,26 @@ export default function About() {
                             style={{ objectFit: "cover" }}
                             priority
                         />
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </section>
 
             {/* ── Info & Testimonial Section ── */}
             <section className="about-page__info">
-                <div className="about-page__info-grid">
+                <motion.div
+                    className="about-page__info-grid"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={staggerContainer}
+                >
 
                     {/* Column 1: Follow Us */}
-                    <div className="about-page__follow-us" style={{ display: "flex", flexDirection: "column", gap: "32px", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "24px" }}>
+                    <motion.div
+                        variants={fadeInUp}
+                        className="about-page__follow-us"
+                        style={{ display: "flex", flexDirection: "column", gap: "32px", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "24px" }}
+                    >
                         <h4 style={{ fontFamily: "var(--font-subheader)", fontSize: "24px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>
                             Follow Us
                         </h4>
@@ -94,10 +138,13 @@ export default function About() {
                                 <span style={{ fontSize: "16px" }}>↗</span>
                             </a>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Column 2: Body Text with Drop Cap */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+                    <motion.div
+                        variants={fadeInUp}
+                        style={{ display: "flex", flexDirection: "column", gap: "40px" }}
+                    >
                         <p style={{
                             fontFamily: "var(--font-body)",
                             fontSize: "clamp(16px, 1.6vw, 20px)",
@@ -126,10 +173,13 @@ export default function About() {
                         }}>
                             We prioritize communication and quality above all else. From the first discovery session to final delivery, your vision is our blueprint. Our creatives aren&apos;t just here to execute tasks; they&apos;re professionals who prioritize your brand&apos;s story and impact on the global stage.
                         </p>
-                    </div>
+                    </motion.div>
 
                     {/* Column 3: Testimonial Quote */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px", backgroundColor: "#fff", boxShadow: "0 10px 30px rgba(0,0,0,0.02)" }}>
+                    <motion.div
+                        variants={fadeInUp}
+                        style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px", backgroundColor: "#fff", boxShadow: "0 10px 30px rgba(0,0,0,0.02)" }}
+                    >
                         <div style={{ fontSize: "64px", color: "var(--color-blue)", lineHeight: 1, fontFamily: "serif", marginBottom: "-40px" }}>&ldquo;</div>
                         <p style={{
                             fontFamily: "var(--font-header)",
@@ -156,20 +206,27 @@ export default function About() {
                                 <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.2vw, 15px)", color: "rgba(0,0,0,0.5)" }}>Harold Lim</p>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
-                </div>
+                </motion.div>
             </section>
 
             {/* CTA section structured to match others */}
             <section className="cta" aria-label="Call to action">
-                <h2 className="cta__headline">
-                    LET&apos;S SCALE YOUR <br /> BRAND TOGETHER.
-                </h2>
-                <div className="cta__content">
-                    <p className="cta__subhead">Your vision, our support.</p>
-                    <AnimatedLink href="/contact" className="cta__button" text="START A PROJECT" />
-                </div>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={staggerContainer}
+                >
+                    <motion.h2 className="cta__headline" variants={fadeInUp}>
+                        LET&apos;S SCALE YOUR <br /> BRAND TOGETHER.
+                    </motion.h2>
+                    <motion.div className="cta__content" variants={fadeInUp}>
+                        <p className="cta__subhead">Your vision, our support.</p>
+                        <AnimatedLink href="/contact" className="cta__button" text="START A PROJECT" />
+                    </motion.div>
+                </motion.div>
             </section>
         </main>
     );

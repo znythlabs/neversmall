@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import ServiceItem from "./components/ServiceItem";
 import Testimonials from "./components/Testimonials";
 import ProjectGallery from "./components/ProjectGallery";
@@ -22,6 +25,27 @@ const NAV_LINKS = ["ABOUT", "PROJECTS", "SERVICES", "TESTIMONIALS"];
 
 import { PROJECTS } from "./data/projects";
 
+// Animation Variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
 
 export default function Home() {
   // Duplicate the marquee items 4× so the animation loops seamlessly
@@ -31,28 +55,43 @@ export default function Home() {
     <main className="page-wrapper home-wrapper">
       {/* ── Hero ── */}
       <section className="hero" aria-label="Hero section">
-        <h1 className="hero__headline">
+        <motion.h1
+          className="hero__headline"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay: 0.5 }}
+        >
           DON'T SELL
           <br />
           YOURSELF SHORT.
-        </h1>
+        </motion.h1>
 
-        <div className="hero__meta">
-          <span className="hero__tagline">
+        <motion.div
+          className="hero__meta"
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
+          <motion.span className="hero__tagline" variants={fadeInUp}>
             NEVERSMALL STUDIOS • CREATIVE AGENCY
-          </span>
+          </motion.span>
 
           <nav className="hero__nav" aria-label="Section navigation">
             {NAV_LINKS.map((link, idx) => (
-              <span key={link} className="hero__nav-link-wrapper" style={{ display: "flex", alignItems: "center" }}>
+              <motion.span key={link} className="hero__nav-link-wrapper" style={{ display: "flex", alignItems: "center" }} variants={fadeInUp}>
                 {idx > 0 && <span className="hero__nav-dot" aria-hidden="true" />}
                 <AnimatedLink href={`#${link.toLowerCase()}`} className="hero__nav-link" text={link} />
-              </span>
+              </motion.span>
             ))}
           </nav>
-        </div>
+        </motion.div>
 
-        <div className="hero__image-container">
+        <motion.div
+          className="hero__image-container"
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay: 0.2 }}
+        >
           <Image
             src="/images/herobg.jpg"
             alt="Neversmall Studios creative event — aerial view of a vibrant crowd"
@@ -62,7 +101,7 @@ export default function Home() {
             sizes="100vw"
             style={{ width: "100%", height: "auto" }}
           />
-        </div>
+        </motion.div>
       </section>
 
       {/* ── Marquee ── */}
@@ -86,14 +125,26 @@ export default function Home() {
 
       {/* ── About Section ── */}
       <section id="about" className="about" aria-label="About section">
-        <h2 className="about__headline">
+        <motion.h2
+          className="about__headline"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+        >
           BUILDING NEXT-LEVEL<br />
           BRANDS THAT REFUSE<br />
           TO STAY SMALL.
-        </h2>
+        </motion.h2>
 
-        <div className="about__grid">
-          <div className="about__image-container">
+        <motion.div
+          className="about__grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
+          <motion.div className="about__image-container" variants={fadeInUp}>
             <Image
               src="/images/about_image.jpg"
               alt="Neversmall Studio team holding CDs and smiling"
@@ -101,9 +152,9 @@ export default function Home() {
               height={600}
               style={{ width: "100%", height: "auto", objectFit: "cover" }}
             />
-          </div>
+          </motion.div>
 
-          <div className="about__content">
+          <motion.div className="about__content" variants={fadeInUp}>
             <h3 className="about__subhead">
               OFFICIAL WEBSITE OF<br />
               NEVERSMALL STUDIO.
@@ -121,30 +172,55 @@ export default function Home() {
               <br />
             </p>
             <AnimatedLink href="/about" className="about__button" text="LEARN MORE" />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* ── Projects Section ── */}
       <section id="projects" className="projects" aria-label="Our projects">
-        <div className="projects__header">
+        <motion.div
+          className="projects__header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+        >
           <h2 className="projects__title">PROJECTS</h2>
           <p className="projects__desc">
             A selection of campaigns, content, and creative work produced for brands across video, photography, and digital marketing.
           </p>
           <span className="projects__tag">(featured work)</span>
-        </div>
+        </motion.div>
 
-        <ProjectGallery projects={PROJECTS} />
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+        >
+          <ProjectGallery projects={PROJECTS} />
+        </motion.div>
 
-        <div className="projects__footer">
+        <motion.div
+          className="projects__footer"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
           <AnimatedLink href="/projects" className="projects__view-all" text="view all projects." />
-        </div>
+        </motion.div>
       </section>
 
       {/* ── Services Section ── */}
       <section id="services" className="services" aria-label="Our services">
-        <div className="services__header">
+        <motion.div
+          className="services__header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+        >
           <h2 className="services__headline">
             FULL-SERVICE<br />
             CREATIVE SUPPORT.
@@ -152,17 +228,31 @@ export default function Home() {
           <p className="services__desc">
             Strategy, production, and performance marketing - all handled in one place.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="services__list">
+        <motion.div
+          className="services__list"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+        >
           {SERVICES.map((srv) => (
-            <ServiceItem key={srv.name} name={srv.name} desc={srv.desc} image={srv.image} href={srv.href} />
+            <motion.div key={srv.name} variants={fadeInUp}>
+              <ServiceItem name={srv.name} desc={srv.desc} image={srv.image} href={srv.href} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="services__footer">
+        <motion.div
+          className="services__footer"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
           <AnimatedLink href="/contact" className="services__button" text="START A PROJECT" />
-        </div>
+        </motion.div>
       </section>
 
       {/* ── Testimonials Section ── */}
@@ -172,16 +262,30 @@ export default function Home() {
 
       {/* ── CTA Section ── */}
       <section id="cta" className="cta" aria-label="Call to action">
-        <h2 className="cta__headline">
+        <motion.h2
+          className="cta__headline"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
           LET&apos;S BUILD<br />
           SOMETHING THAT<br />
           STANDS OUT.
-        </h2>
+        </motion.h2>
 
-        <div className="cta__content">
-          <p className="cta__subhead">Don&apos;t sell yourself short.</p>
-          <AnimatedLink href="/contact" className="cta__button" text="START A PROJECT" />
-        </div>
+        <motion.div
+          className="cta__content"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <motion.p className="cta__subhead" variants={fadeInUp}>Don&apos;t sell yourself short.</motion.p>
+          <motion.div variants={fadeInUp}>
+            <AnimatedLink href="/contact" className="cta__button" text="START A PROJECT" />
+          </motion.div>
+        </motion.div>
       </section>
 
     </main>

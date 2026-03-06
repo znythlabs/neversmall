@@ -1,5 +1,28 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import AnimatedLink from "../components/AnimatedLink";
+
+const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+    }
+};
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.1
+        }
+    }
+};
 
 const inputStyle = {
     width: "100%",
@@ -29,13 +52,19 @@ export default function Contact() {
 
             {/* ── Header Section ── */}
             <section style={{ padding: "120px 40px 75px", position: "relative" }} className="contact-page__header">
-                <div style={{
-                    display: "grid",
-                    gridTemplateColumns: "1.2fr 1fr",
-                    gap: "80px",
-                    alignItems: "end"
-                }} className="contact-page__header-grid">
-                    <div>
+                <motion.div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "1.2fr 1fr",
+                        gap: "80px",
+                        alignItems: "end"
+                    }}
+                    className="contact-page__header-grid"
+                    initial="hidden"
+                    animate="visible"
+                    variants={staggerContainer}
+                >
+                    <motion.div variants={fadeInUp}>
                         <h1 style={{
                             fontFamily: "var(--font-header)",
                             fontSize: "clamp(48px, 10vw, 100px)",
@@ -47,8 +76,8 @@ export default function Contact() {
                         }}>
                             Contact Us
                         </h1>
-                    </div>
-                    <div style={{ justifySelf: "start" }}>
+                    </motion.div>
+                    <motion.div style={{ justifySelf: "start" }} variants={fadeInUp}>
                         <p style={{
                             fontFamily: "var(--font-body)",
                             fontSize: "20px",
@@ -60,21 +89,28 @@ export default function Contact() {
                         }}>
                             Tell us about your project and we&apos;ll confirm availability within 24 hours.
                         </p>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </section>
 
             {/* ── Content Section: Form & Image ── */}
             <section style={{ padding: "0 40px 80px" }}>
-                <div style={{
-                    display: "grid",
-                    gridTemplateColumns: "1.2fr 1fr",
-                    gap: "80px",
-                    alignItems: "stretch"
-                }} className="contact-page__content-grid">
+                <motion.div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "1.2fr 1fr",
+                        gap: "80px",
+                        alignItems: "stretch"
+                    }}
+                    className="contact-page__content-grid"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={staggerContainer}
+                >
 
                     {/* Form Area */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }} className="contact-form">
+                    <motion.div style={{ display: "flex", flexDirection: "column", gap: "24px" }} className="contact-form" variants={fadeInUp}>
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }} className="contact-form__row">
                             <div className="contact-form__group">
                                 <label style={labelStyle as any}>Name</label>
@@ -125,10 +161,12 @@ export default function Contact() {
                         <div style={{ marginTop: "16px" }}>
                             <AnimatedLink href="/contact" className="cta__button" text="START A PROJECT" />
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Image Area */}
-                    <div style={{ position: "relative", width: "100%", aspectRatio: "3.2/2", overflow: "hidden" }}>
+                    <motion.div
+                        variants={fadeInUp}
+                        style={{ position: "relative", width: "100%", aspectRatio: "3.2/2", overflow: "hidden" }}>
                         <Image
                             src="/images/about_image.jpg" // Using an existing project image
                             alt="Contact Us Journey"
@@ -136,23 +174,30 @@ export default function Contact() {
                             style={{ objectFit: "cover" }}
                             priority
                         />
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </section>
 
             {/* ── Contact Info Tri-Column ── */}
             <section style={{ padding: "60px 40px" }}>
-                <div style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    gap: "40px",
-                    textAlign: "center",
-                    borderTop: "1px solid rgba(0,0,0,0.1)",
-                    paddingTop: "60px"
-                }} className="contact-page__info-grid">
+                <motion.div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(3, 1fr)",
+                        gap: "40px",
+                        textAlign: "center",
+                        borderTop: "1px solid rgba(0,0,0,0.1)",
+                        paddingTop: "60px"
+                    }}
+                    className="contact-page__info-grid"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={staggerContainer}
+                >
 
                     {/* Block 1 */}
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
+                    <motion.div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }} variants={fadeInUp}>
                         <div style={{ width: "40px", height: "40px", border: "1px solid var(--color-black)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <span style={{ fontSize: "16px" }}>☎</span>
                         </div>
@@ -160,10 +205,10 @@ export default function Contact() {
                         <p style={{ fontFamily: "var(--font-body)", fontSize: "20px", lineHeight: 1.5, margin: 0, opacity: 0.8 }}>
                             0432 300 709
                         </p>
-                    </div>
+                    </motion.div>
 
                     {/* Block 2 */}
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
+                    <motion.div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }} variants={fadeInUp}>
                         <div style={{ width: "40px", height: "40px", border: "1px solid var(--color-black)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <span style={{ fontSize: "16px" }}>⌂</span>
                         </div>
@@ -172,10 +217,10 @@ export default function Contact() {
                             Melbourne, VIC<br />
                             Australia
                         </p>
-                    </div>
+                    </motion.div>
 
                     {/* Block 3 */}
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
+                    <motion.div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }} variants={fadeInUp}>
                         <div style={{ width: "40px", height: "40px", border: "1px solid var(--color-black)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <span style={{ fontSize: "16px" }}>✉</span>
                         </div>
@@ -183,9 +228,9 @@ export default function Contact() {
                         <p style={{ fontFamily: "var(--font-body)", fontSize: "20px", lineHeight: 1.5, margin: 0, opacity: 0.8 }}>
                             hello@neversmall.studio
                         </p>
-                    </div>
+                    </motion.div>
 
-                </div>
+                </motion.div>
             </section>
 
         </main>

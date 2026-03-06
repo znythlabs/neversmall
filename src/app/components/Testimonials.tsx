@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const BASE_TESTIMONIALS = [
     {
@@ -78,13 +79,15 @@ export default function Testimonials() {
                     </button>
 
                     <div className="testimonials__avatar-container">
-                        <div
+                        <motion.div
                             className="testimonials__avatar-track"
-                            style={{
-                                // Top of track is at 50% of container (260px).
-                                // Top of active item is (activeIndex * (110 + 24)) = activeIndex * 134.
-                                // Distance to perfectly center the 252px tall active item: 252 / 2 = 126px.
-                                transform: `translateY(-${activeIndex * 134 + 126}px)`
+                            animate={{
+                                y: -(activeIndex * 134 + 126)
+                            }}
+                            transition={{
+                                type: "spring",
+                                damping: 25,
+                                stiffness: 120
                             }}
                         >
                             {TESTIMONIALS.map((t, idx) => {
@@ -105,7 +108,7 @@ export default function Testimonials() {
                                     </button>
                                 );
                             })}
-                        </div>
+                        </motion.div>
                     </div>
 
                     <button
@@ -121,26 +124,36 @@ export default function Testimonials() {
 
                 {/* Right Side: Review Card */}
                 <div className="testimonials__card">
-                    <h3 className="testimonials__card-headline" key={`headline-${activeTestimonial.id}`}>
-                        {activeTestimonial.headline}
-                    </h3>
-                    <p className="testimonials__card-body" key={`body-${activeTestimonial.id}`}>
-                        {activeTestimonial.body}
-                    </p>
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeTestimonial.id}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+                        >
+                            <h3 className="testimonials__card-headline">
+                                {activeTestimonial.headline}
+                            </h3>
+                            <p className="testimonials__card-body">
+                                {activeTestimonial.body}
+                            </p>
 
-                    <div className="testimonials__card-footer" key={`footer-${activeTestimonial.id}`}>
-                        <div className="testimonials__author">
-                            <span className="testimonials__author-name">{activeTestimonial.name}</span>
-                            <span className="testimonials__author-role">{activeTestimonial.role}</span>
-                        </div>
-                        <div className="testimonials__stars" aria-label="5 out of 5 stars">
-                            {[...Array(5)].map((_, i) => (
-                                <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="var(--color-yellow)">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                </svg>
-                            ))}
-                        </div>
-                    </div>
+                            <div className="testimonials__card-footer">
+                                <div className="testimonials__author">
+                                    <span className="testimonials__author-name">{activeTestimonial.name}</span>
+                                    <span className="testimonials__author-role">{activeTestimonial.role}</span>
+                                </div>
+                                <div className="testimonials__stars" aria-label="5 out of 5 stars">
+                                    {[...Array(5)].map((_, i) => (
+                                        <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="var(--color-yellow)">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                        </svg>
+                                    ))}
+                                </div>
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </div>
         </section>

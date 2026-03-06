@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Project {
     title: string;
@@ -15,6 +16,25 @@ interface ProjectGalleryProps {
     projects: Project[];
     className?: string;
 }
+
+const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+    }
+};
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1
+        }
+    }
+};
 
 export default function ProjectGallery({ projects, className }: ProjectGalleryProps) {
     const router = useRouter();
@@ -65,10 +85,17 @@ export default function ProjectGallery({ projects, className }: ProjectGalleryPr
 
     return (
         <>
-            <div className={className || "projects__grid"}>
+            <motion.div
+                className={className || "projects__grid"}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={staggerContainer}
+            >
                 {projects.map((project, i) => (
-                    <div
+                    <motion.div
                         key={i}
+                        variants={fadeInUp}
                         className="projects__item"
                         aria-label={project.title}
                         onClick={() => handleItemClick(project, i)}
@@ -94,82 +121,91 @@ export default function ProjectGallery({ projects, className }: ProjectGalleryPr
                             </span>
                             <h3 className="projects__overlay-title">{project.title}</h3>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
-            </div>
+            </motion.div>
 
             {/* Lightbox Modal */}
-            {selected && (
-                <div
-                    className="lightbox"
-                    onClick={closeModal}
-                    role="dialog"
-                    aria-modal="true"
-                    aria-label={`${selected.title} — ${selected.category}`}
-                >
-                    <div
-                        className="lightbox__content"
-                        onClick={(e) => e.stopPropagation()}
+            <AnimatePresence>
+                {selected && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="lightbox"
+                        onClick={closeModal}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label={`${selected.title} — ${selected.category}`}
                     >
-                        {/* Close button */}
-                        <button
-                            className="lightbox__close"
-                            onClick={closeModal}
-                            aria-label="Close lightbox"
+                        <motion.div
+                            initial={{ scale: 0.95, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.95, opacity: 0 }}
+                            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                            className="lightbox__content"
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg>
-                        </button>
+                            {/* Close button */}
+                            <button
+                                className="lightbox__close"
+                                onClick={closeModal}
+                                aria-label="Close lightbox"
+                            >
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
 
-                        {/* Previous */}
-                        <button
-                            className="lightbox__nav lightbox__nav--prev"
-                            onClick={goPrev}
-                            aria-label="Previous project"
-                        >
-                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '2px' }}>
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </button>
+                            {/* Previous */}
+                            <button
+                                className="lightbox__nav lightbox__nav--prev"
+                                onClick={goPrev}
+                                aria-label="Previous project"
+                            >
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '2px' }}>
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                            </button>
 
-                        {/* Image */}
-                        <div className="lightbox__image-wrapper">
-                            <Image
-                                src={selected.image}
-                                alt={selected.title}
-                                fill
-                                style={{ objectFit: "contain" }}
-                                sizes="90vw"
-                                priority
-                            />
-                        </div>
+                            {/* Image */}
+                            <div className="lightbox__image-wrapper">
+                                <Image
+                                    src={selected.image}
+                                    alt={selected.title}
+                                    fill
+                                    style={{ objectFit: "contain" }}
+                                    sizes="90vw"
+                                    priority
+                                />
+                            </div>
 
-                        {/* Next */}
-                        <button
-                            className="lightbox__nav lightbox__nav--next"
-                            onClick={goNext}
-                            aria-label="Next project"
-                        >
-                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '2px' }}>
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                        </button>
+                            {/* Next */}
+                            <button
+                                className="lightbox__nav lightbox__nav--next"
+                                onClick={goNext}
+                                aria-label="Next project"
+                            >
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '2px' }}>
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
 
-                        {/* Info bar */}
-                        <div className="lightbox__info">
-                            <span className="lightbox__info-category">
-                                {selected.category}
-                            </span>
-                            <h3 className="lightbox__info-title">{selected.title}</h3>
-                            <span className="lightbox__info-count">
-                                {(selectedIndex ?? 0) + 1} / {projects.length}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            )}
+                            {/* Info bar */}
+                            <div className="lightbox__info">
+                                <span className="lightbox__info-category">
+                                    {selected.category}
+                                </span>
+                                <h3 className="lightbox__info-title">{selected.title}</h3>
+                                <span className="lightbox__info-count">
+                                    {(selectedIndex ?? 0) + 1} / {projects.length}
+                                </span>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 }
