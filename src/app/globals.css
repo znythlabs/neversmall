@@ -2317,6 +2317,70 @@ button {
     align-items: flex-start !important;
   }
 
+  /* Project Details Mobile */
+  .project-detail-hero {
+    padding: 60px 0 32px 0 !important;
+  }
+
+  .project-detail__container {
+    padding: 0 20px !important;
+    width: 100% !important;
+  }
+
+  .project-detail__title {
+    margin-bottom: 20px !important;
+  }
+
+  .project-detail__info-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    margin-top: 32px !important;
+  }
+
+  .project-detail__meta {
+    align-self: flex-start !important;
+    width: 100% !important;
+    margin-top: 16px;
+  }
+
+  .project-detail__main-image {
+    height: 60vh !important;
+    margin: 20px 0 !important;
+  }
+
+  .project-detail__gallery {
+    padding: 40px 0 !important;
+  }
+
+  .project-detail__gallery .project-detail__container {
+    padding: 0 20px !important;
+  }
+
+  .project-detail__gallery-title {
+    margin-bottom: 24px !important;
+  }
+
+  .project-detail__gallery-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .project-detail__back {
+    padding: 40px 0 80px 0 !important;
+    text-align: left !important;
+  }
+
+  .project-detail__back .project-detail__container {
+    padding: 0 20px !important;
+  }
+
+  .project-detail__back .cta__button {
+    align-self: flex-start !important;
+    margin: 0 !important;
+  }
+
 
 
   /* ============================================
