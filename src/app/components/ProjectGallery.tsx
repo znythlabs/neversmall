@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface Project {
     title: string;
@@ -16,6 +17,7 @@ interface ProjectGalleryProps {
 }
 
 export default function ProjectGallery({ projects, className }: ProjectGalleryProps) {
+    const router = useRouter();
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
     const openModal = useCallback((index: number) => {
@@ -53,6 +55,14 @@ export default function ProjectGallery({ projects, className }: ProjectGalleryPr
 
     const selected = selectedIndex !== null ? projects[selectedIndex] : null;
 
+    const handleItemClick = (project: Project, index: number) => {
+        if (project.slug) {
+            router.push(`/projects/${project.slug}`);
+        } else {
+            openModal(index);
+        }
+    };
+
     return (
         <>
             <div className={className || "projects__grid"}>
@@ -61,13 +71,13 @@ export default function ProjectGallery({ projects, className }: ProjectGalleryPr
                         key={i}
                         className="projects__item"
                         aria-label={project.title}
-                        onClick={() => project.slug ? (window.location.href = `/projects/${project.slug}`) : openModal(i)}
+                        onClick={() => handleItemClick(project, i)}
                         role="button"
                         tabIndex={0}
                         onKeyDown={(e) => {
                             if (e.key === "Enter" || e.key === " ") {
                                 e.preventDefault();
-                                project.slug ? (window.location.href = `/projects/${project.slug}`) : openModal(i);
+                                handleItemClick(project, i);
                             }
                         }}
                     >

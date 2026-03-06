@@ -28,11 +28,11 @@ export default function Contact() {
         <main className="page-wrapper contact-page" style={{ backgroundColor: "#F6F6F6", paddingBottom: "120px" }}>
 
             {/* ── Header Section ── */}
-            <section style={{ padding: "120px 40px 60px", position: "relative" }} className="contact-page__header">
+            <section style={{ padding: "120px 40px 75px", position: "relative" }} className="contact-page__header">
                 <div style={{
                     display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "60px",
+                    gridTemplateColumns: "1.2fr 1fr",
+                    gap: "80px",
                     alignItems: "end"
                 }} className="contact-page__header-grid">
                     <div>
@@ -48,13 +48,15 @@ export default function Contact() {
                             Contact Us
                         </h1>
                     </div>
-                    <div style={{ maxWidth: "400px", paddingBottom: "16px" }}>
+                    <div style={{ justifySelf: "start" }}>
                         <p style={{
                             fontFamily: "var(--font-body)",
                             fontSize: "20px",
                             lineHeight: 1.5,
                             color: "var(--color-black)",
-                            margin: 0
+                            margin: 0,
+                            textAlign: "left",
+                            maxWidth: "480px"
                         }}>
                             Tell us about your project and we&apos;ll confirm availability within 24 hours.
                         </p>
@@ -96,6 +98,7 @@ export default function Contact() {
                                     <option>Photography</option>
                                     <option>Brand Identity</option>
                                     <option>Social Media</option>
+                                    <option>Meta Ads</option>
                                 </select>
                             </div>
                         </div>
@@ -125,7 +128,7 @@ export default function Contact() {
                     </div>
 
                     {/* Image Area */}
-                    <div style={{ position: "relative", width: "90%", aspectRatio: "3/2", overflow: "hidden" }}>
+                    <div style={{ position: "relative", width: "100%", aspectRatio: "3.2/2", overflow: "hidden" }}>
                         <Image
                             src="/images/about_image.jpg" // Using an existing project image
                             alt="Contact Us Journey"

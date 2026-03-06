@@ -81,12 +81,14 @@ export default function MetaAdsPage() {
             </section>
 
             {/* CTA */}
-            <section className="sp-cta" aria-label="Start a project">
-                <h2 className="sp-cta__headline">
+            <section className="cta" aria-label="Start a project">
+                <h2 className="cta__headline">
                     READY TO<br />SCALE YOUR REACH?
                 </h2>
-                <p className="sp-cta__sub">Stop guessing. Start converting.</p>
-                <AnimatedLink href="/#cta" className="sp-cta__button" text="START A PROJECT" />
+                <div className="cta__content">
+                    <p className="cta__subhead">Stop guessing. Start converting.</p>
+                    <AnimatedLink href="/#cta" className="cta__button" text="START A PROJECT" />
+                </div>
             </section>
         </main>
     );

@@ -5,66 +5,64 @@ import AnimatedLink from "../../components/AnimatedLink";
 import Footer from "../../components/Footer";
 
 interface ProjectPageProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
-export default function ProjectDetail({ params }: ProjectPageProps) {
-    const project = PROJECTS.find((p) => p.slug === params.slug);
+export default async function ProjectDetail({ params }: ProjectPageProps) {
+    const { slug } = await params;
+    const project = PROJECTS.find((p) => p.slug === slug);
 
     if (!project) {
         notFound();
     }
 
     return (
-        <main className="page-wrapper">
+        <main className="page-wrapper home-wrapper">
             {/* Hero Section */}
-            <section className="project-detail-hero" style={{ paddingBottom: "100px" }}>
-                <div className="container" style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 20px" }}>
-                    <div style={{ marginBottom: "20px" }}>
-                        <span style={{ fontFamily: "var(--font-subheader)", fontSize: "14px", textTransform: "uppercase", letterSpacing: "0.1em", opacity: 0.6 }}>
-                            {project.category}
-                        </span>
-                    </div>
-                    <h1 style={{ fontFamily: "var(--font-header)", fontSize: "clamp(48px, 9vw, 130px)", lineHeight: 0.85, letterSpacing: "-0.04em", textTransform: "uppercase", marginBottom: "40px", color: "var(--color-black)" }}>
+            <section className="project-detail-hero">
+                <div className="project-detail__container">
+                    <span className="project-detail__category">
+                        {project.category}
+                    </span>
+                    <h1 className="project-detail__title">
                         {project.title.split(' ').map((word, i) => (
                             <span key={i}>{word}<br /></span>
                         ))}
                     </h1>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "40px", marginTop: "80px" }}>
-                        <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(16px, 1.6vw, 20px)", lineHeight: 1.4, color: "var(--color-black)", maxWidth: "600px" }}>
+
+                    <div className="project-detail__info-grid">
+                        <p className="project-detail__desc">
                             {project.description}
                         </p>
-                        <div style={{ display: "flex", flexDirection: "column", gap: "16px", alignSelf: "end" }}>
-                            <div style={{ height: "1px", width: "100%", backgroundColor: "var(--color-black)" }}></div>
-                            <p style={{ fontFamily: "var(--font-subheader)", fontSize: "16px", textTransform: "uppercase", letterSpacing: "0.1em" }}>PROJECT ARCHIVE / 2024</p>
+                        <div className="project-detail__meta">
+                            <div className="project-detail__meta-divider" />
+                            <p className="project-detail__meta-text">PROJECT ARCHIVE / 2024</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Main Feature Image */}
-            <section style={{ width: "100%" }}>
-                <div style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
-                    <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        style={{ objectFit: "cover" }}
-                        priority
-                    />
-                </div>
+            <section className="project-detail__main-image">
+                <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    priority
+                />
             </section>
 
             {/* Gallery Grid */}
             {project.gallery && project.gallery.length > 0 && (
-                <section style={{ padding: "100px 0", background: "#E6E6E6" }}>
-                    <div className="container" style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 20px" }}>
-                        <h2 style={{ fontFamily: "var(--font-header)", fontSize: "clamp(32px, 5vw, 64px)", textTransform: "uppercase", marginBottom: "64px" }}>GALLERY</h2>
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" }}>
+                <section className="project-detail__gallery">
+                    <div className="project-detail__container">
+                        <h2 className="project-detail__gallery-title">GALLERY</h2>
+                        <div className="project-detail__gallery-grid">
                             {project.gallery.map((img, idx) => (
-                                <div key={idx} style={{ position: "relative", width: "100%", aspectRatio: idx === 0 ? "16/9" : "1/1", gridColumn: idx === 0 ? "span 2" : "auto", overflow: "hidden" }}>
+                                <div key={idx} className="project-detail__gallery-item" style={{ aspectRatio: "1/1" }}>
                                     <Image
                                         src={img}
                                         alt={`${project.title} gallery ${idx + 1}`}
@@ -78,9 +76,20 @@ export default function ProjectDetail({ params }: ProjectPageProps) {
                 </section>
             )}
 
+            {/* CTA Section */}
+            <section className="cta" aria-label="Call to action">
+                <h2 className="cta__headline">
+                    INSPIRED BY<br />THIS PROJECT?
+                </h2>
+                <div className="cta__content">
+                    <p className="cta__subhead">Let&apos;s build yours next.</p>
+                    <AnimatedLink href="/contact" className="cta__button" text="START A PROJECT" />
+                </div>
+            </section>
+
             {/* Back to Projects */}
-            <section style={{ padding: "80px 0", borderTop: "1px solid var(--color-black)" }}>
-                <div className="container" style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 20px", textAlign: "center" }}>
+            <section className="project-detail__back">
+                <div className="project-detail__container">
                     <AnimatedLink href="/projects" text="BACK TO PROJECTS" className="cta__button" />
                 </div>
             </section>

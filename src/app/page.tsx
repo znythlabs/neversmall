@@ -20,16 +20,8 @@ const SERVICES = [
 
 const NAV_LINKS = ["ABOUT", "PROJECTS", "SERVICES", "TESTIMONIALS"];
 
-const PROJECTS = [
-  { title: "URBAN EDGE", category: "Fashion Campaign", image: "/images/project-1.png" },
-  { title: "BEHIND THE LENS", category: "Videography", image: "/images/project-2.png" },
-  { title: "PURE GLOW", category: "Product Photography", image: "/images/project-3.png" },
-  { title: "AFTER DARK", category: "Event Coverage", image: "/images/project-4.png" },
-  { title: "SCROLL CULTURE", category: "Social Media", image: "/images/project-5.png" },
-  { title: "GOLDEN MILE", category: "Lifestyle Campaign", image: "/images/project-6.png" },
-  { title: "BREW & CO", category: "Food & Beverage", image: "/images/project-7.png" },
-  { title: "MAIN STAGE", category: "Corporate Event", image: "/images/project-8.png" },
-];
+import { PROJECTS } from "./data/projects";
+
 
 export default function Home() {
   // Duplicate the marquee items 4× so the animation loops seamlessly
@@ -117,9 +109,16 @@ export default function Home() {
               NEVERSMALL STUDIO.
             </h3>
             <p className="about__body">
-              Were a team of creatives, storytellers, and marketers
+              We&apos;re a team of creatives, storytellers, and marketers
               delivering full-service support: content, production, and
               strategy. All in one place.
+              <br />
+              <br />
+              From brand campaigns and video production to photography, social media management, and paid advertising, we help businesses communicate clearly and grow with purpose.
+              <br />
+              <br />
+              Our approach blends creativity with strategy, ensuring every project not only looks great but performs across modern digital platforms.
+              <br />
             </p>
             <AnimatedLink href="/about" className="about__button" text="LEARN MORE" />
           </div>
@@ -139,7 +138,7 @@ export default function Home() {
         <ProjectGallery projects={PROJECTS} />
 
         <div className="projects__footer">
-          <a href="/projects" className="projects__view-all">view all projects.</a>
+          <AnimatedLink href="/projects" className="projects__view-all" text="view all projects." />
         </div>
       </section>
 

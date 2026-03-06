@@ -9,35 +9,35 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
     {
-        title: "URBAN EDGE",
-        category: "Fashion Campaign",
-        description: "A high-energy fashion campaign captured in the heart of downtown Melbourne. Exploring the intersection of street culture and luxury aesthetics.",
+        title: "VEILED MOTION",
+        category: "Visual Arts",
+        description: "A study in ethereal movement — where form meets emotion in soft, dreamlike light.",
         image: "/images/project-1.png",
-        slug: "urban-edge",
+        slug: "veiled-motion",
         gallery: ["/images/project-1.png", "/images/project-2.png", "/images/project-3.png"]
     },
     {
-        title: "BEHIND THE LENS",
-        category: "Videography",
-        description: "An intimate look at the creative process. This project documents the raw emotions and technical precision required in modern cinematography.",
+        title: "ENDLESS PATH",
+        category: "Landscape",
+        description: "An exploration of solitude and journey, winding through the stillness of nature.",
         image: "/images/project-2.png",
-        slug: "behind-the-lens",
+        slug: "endless-path",
         gallery: ["/images/project-2.png", "/images/project-4.png", "/images/project-5.png"]
     },
     {
-        title: "PURE GLOW",
-        category: "Product Photography",
-        description: "Minimalist product photography for a high-end skincare brand. Focusing on texture, light, and the essence of purity.",
+        title: "CELESTIAL DRIFT",
+        category: "Fine Art",
+        description: "A vision of the unknown — light, gravity, and silence colliding beyond the stars.",
         image: "/images/project-3.png",
-        slug: "pure-glow",
+        slug: "celestial-drift",
         gallery: ["/images/project-3.png", "/images/project-1.png", "/images/project-6.png"]
     },
     {
-        title: "AFTER DARK",
-        category: "Event Coverage",
-        description: "Capturing the energy of Melbourne's night life. Low-light photography that preserves the atmosphere of premium events.",
+        title: "SHADOW GAZE",
+        category: "Portraiture",
+        description: "An intimate portrait that blurs the line between mystery and clarity.",
         image: "/images/project-4.png",
-        slug: "after-dark",
+        slug: "shadow-gaze",
         gallery: ["/images/project-4.png", "/images/project-7.png", "/images/project-8.png"]
     },
     {

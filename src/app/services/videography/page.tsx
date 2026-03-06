@@ -81,12 +81,14 @@ export default function VideographyPage() {
             </section>
 
             {/* CTA */}
-            <section className="sp-cta" aria-label="Start a project">
-                <h2 className="sp-cta__headline">
+            <section className="cta" aria-label="Start a project">
+                <h2 className="cta__headline">
                     READY TO<br />HIT RECORD?
                 </h2>
-                <p className="sp-cta__sub">Let&apos;s create something worth watching.</p>
-                <AnimatedLink href="/#cta" className="sp-cta__button" text="START A PROJECT" />
+                <div className="cta__content">
+                    <p className="cta__subhead">Let&apos;s create something worth watching.</p>
+                    <AnimatedLink href="/#cta" className="cta__button" text="START A PROJECT" />
+                </div>
             </section>
         </main>
     );

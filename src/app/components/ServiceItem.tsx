@@ -66,7 +66,13 @@ export default function ServiceItem({ name, desc, image, href }: ServiceItemProp
                     <motion.div
                         className="service-item__image"
                         aria-hidden="true"
-                        initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
+                        initial={{
+                            opacity: 0,
+                            scale: 0.8,
+                            rotate: 0,
+                            x: mousePos.x,
+                            y: mousePos.y
+                        }}
                         animate={{
                             opacity: 1,
                             scale: 1,
