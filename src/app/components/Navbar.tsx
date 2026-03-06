@@ -83,20 +83,22 @@ export default function Navbar() {
                 </a>
 
                 <div className="navbar__actions">
-                    <div className="navbar__links">
-                        <a href="/#about" className="navbar__link animated-link">
-                            <SplitText text="ABOUT" />
-                        </a>
-                        <a href="/projects" className="navbar__link animated-link">
-                            <SplitText text="PROJECTS" />
-                        </a>
-                        <a href="/#services" className="navbar__link animated-link">
-                            <SplitText text="SERVICES" />
-                        </a>
-                        <a href="/#testimonials" className="navbar__link animated-link">
-                            <SplitText text="TESTIMONIALS" />
-                        </a>
-                    </div>
+                    {!isHomePage && (
+                        <div className="navbar__links">
+                            <a href="/#about" className="navbar__link animated-link">
+                                <SplitText text="ABOUT" />
+                            </a>
+                            <a href="/#projects" className="navbar__link animated-link">
+                                <SplitText text="PROJECTS" />
+                            </a>
+                            <a href="/#services" className="navbar__link animated-link">
+                                <SplitText text="SERVICES" />
+                            </a>
+                            <a href="/#testimonials" className="navbar__link animated-link">
+                                <SplitText text="TESTIMONIALS" />
+                            </a>
+                        </div>
+                    )}
                     <a href="/contact" className="navbar__cta-link animated-link">
                         <SplitText text="GET IN TOUCH" />
                     </a>
@@ -193,7 +195,7 @@ export default function Navbar() {
                         <a href="/#about" className="menu-overlay__nav-link animated-link" onClick={close}>
                             <SplitText text="ABOUT" />
                         </a>
-                        <a href="/projects" className="menu-overlay__nav-link animated-link" onClick={close}>
+                        <a href="/#projects" className="menu-overlay__nav-link animated-link" onClick={close}>
                             <SplitText text="PROJECTS" />
                         </a>
                         <a href="/#services" className="menu-overlay__nav-link animated-link" onClick={close}>
