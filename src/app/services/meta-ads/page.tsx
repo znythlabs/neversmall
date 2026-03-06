@@ -6,9 +6,18 @@ export default function MetaAdsPage() {
         <main className="service-wrapper">
             {/* Hero */}
             <section className="sp-hero" aria-label="Meta Ads hero">
-                <div className="sp-hero__bg">
+                <div className="sp-hero__bg sp-hero__bg--desktop">
                     <Image
                         src="/images/meta-ads-full.jpg"
+                        alt="Targeted Meta advertising campaigns"
+                        fill
+                        priority
+                        style={{ objectFit: "cover" }}
+                    />
+                </div>
+                <div className="sp-hero__bg sp-hero__bg--mobile">
+                    <Image
+                        src="/images/ads.jpg"
                         alt="Targeted Meta advertising campaigns"
                         fill
                         priority

@@ -6,9 +6,18 @@ export default function VideographyPage() {
         <main className="service-wrapper">
             {/* Hero */}
             <section className="sp-hero" aria-label="Videography hero">
-                <div className="sp-hero__bg">
+                <div className="sp-hero__bg sp-hero__bg--desktop">
                     <Image
                         src="/images/videography-full.jpg"
+                        alt="High-impact videography production"
+                        fill
+                        priority
+                        style={{ objectFit: "cover" }}
+                    />
+                </div>
+                <div className="sp-hero__bg sp-hero__bg--mobile">
+                    <Image
+                        src="/images/videography.jpg"
                         alt="High-impact videography production"
                         fill
                         priority

@@ -6,9 +6,18 @@ export default function SocialManagementPage() {
         <main className="service-wrapper">
             {/* Hero */}
             <section className="sp-hero" aria-label="Social Management hero">
-                <div className="sp-hero__bg">
+                <div className="sp-hero__bg sp-hero__bg--desktop">
                     <Image
                         src="/images/social-management-full.jpg"
+                        alt="Strategic social media management"
+                        fill
+                        priority
+                        style={{ objectFit: "cover" }}
+                    />
+                </div>
+                <div className="sp-hero__bg sp-hero__bg--mobile">
+                    <Image
+                        src="/images/social.jpg"
                         alt="Strategic social media management"
                         fill
                         priority

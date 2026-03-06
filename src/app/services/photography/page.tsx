@@ -6,9 +6,18 @@ export default function PhotographyPage() {
         <main className="service-wrapper">
             {/* Hero */}
             <section className="sp-hero" aria-label="Photography hero">
-                <div className="sp-hero__bg">
+                <div className="sp-hero__bg sp-hero__bg--desktop">
                     <Image
                         src="/images/photography-full.jpg"
+                        alt="Professional photography production"
+                        fill
+                        priority
+                        style={{ objectFit: "cover" }}
+                    />
+                </div>
+                <div className="sp-hero__bg sp-hero__bg--mobile">
+                    <Image
+                        src="/images/photography-service.jpg"
                         alt="Professional photography production"
                         fill
                         priority

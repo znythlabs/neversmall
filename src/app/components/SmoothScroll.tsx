@@ -19,6 +19,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
         lenisRef.current = lenis;
 
+        // Expose lenis globally for other components to access (like ScrollToTop)
+        (window as any).lenis = lenis;
+
         function raf(time: number) {
             lenis.raf(time);
             requestAnimationFrame(raf);

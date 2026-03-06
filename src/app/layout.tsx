@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 import Navbar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop";
 import ConditionalFooter from "./components/ConditionalFooter";
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default function RootLayout({
         <SmoothScroll>
           <Navbar />
           {children}
+          <ScrollToTop />
           <ConditionalFooter />
         </SmoothScroll>
       </body>

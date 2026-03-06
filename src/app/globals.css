@@ -1722,10 +1722,24 @@ button {
   z-index: 0;
 }
 
+.sp-hero__bg--mobile {
+  display: none;
+}
+
 .sp-hero__bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .sp-hero__bg--desktop {
+    display: none;
+  }
+
+  .sp-hero__bg--mobile {
+    display: block;
+  }
 }
 
 .sp-hero__overlay {
@@ -2897,5 +2911,52 @@ button {
   .footer__nav-number {
     min-width: 0 !important;
     width: auto !important;
+  }
+}
+
+/* ============================================
+   SCROLL TO TOP
+   ============================================ */
+.scroll-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+}
+
+.scroll-to-top:hover {
+  background-color: var(--color-blue);
+  transform: translateY(-5px);
+}
+
+.scroll-to-top svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .scroll-to-top svg {
+    width: 20px;
+    height: 20px;
   }
 }
