@@ -12,10 +12,10 @@ const MARQUEE_WORDS = [
 ];
 
 const SERVICES = [
-  { name: "VIDEOGRAPHY", desc: "High-impact video production for brands, campaigns, events, and short-form content.", image: "/images/videography-service.jpg", href: "/services/videography" },
-  { name: "PHOTOGRAPHY", desc: "Clean, professional imagery for products, campaigns, lifestyle, and brand storytelling.", image: "/images/photography.jpg", href: "/services/photography" },
-  { name: "SOCIAL MANAGEMENT", desc: "Strategic content planning, publishing, and growth management across social platforms.", image: "/images/social-management.jpg", href: "/services/social-management" },
-  { name: "META ADS", desc: "Targeted ad campaigns focused on reach, engagement, and measurable performance.", image: "/images/meta-ads.jpg", href: "/services/meta-ads" }
+  { name: "VIDEOGRAPHY", desc: "High-impact video production for brands, campaigns, events, and short-form content.", image: "/images/videography.jpg", href: "/services/videography" },
+  { name: "PHOTOGRAPHY", desc: "Clean, professional imagery for products, campaigns, lifestyle, and brand storytelling.", image: "/images/photography-service.jpg", href: "/services/photography" },
+  { name: "SOCIAL MANAGEMENT", desc: "Strategic content planning, publishing, and growth management across social platforms.", image: "/images/social.jpg", href: "/services/social-management" },
+  { name: "META ADS", desc: "Targeted ad campaigns focused on reach, engagement, and measurable performance.", image: "/images/ads.jpg", href: "/services/meta-ads" }
 ];
 
 const NAV_LINKS = ["ABOUT", "PROJECTS", "SERVICES", "TESTIMONIALS"];
@@ -62,7 +62,7 @@ export default function Home() {
 
         <div className="hero__image-container">
           <Image
-            src="/images/hero_image2.jpg"
+            src="/images/herobg.jpg"
             alt="Neversmall Studios creative event — aerial view of a vibrant crowd"
             width={1920}
             height={1080}
@@ -103,7 +103,7 @@ export default function Home() {
         <div className="about__grid">
           <div className="about__image-container">
             <Image
-              src="/images/about-image.jpg"
+              src="/images/about_image.jpg"
               alt="Neversmall Studio team holding CDs and smiling"
               width={800}
               height={600}

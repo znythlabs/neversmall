@@ -3,6 +3,7 @@
 import { useRef, useState, MouseEvent } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ServiceItemProps {
     name: string;
@@ -14,66 +15,93 @@ interface ServiceItemProps {
 export default function ServiceItem({ name, desc, image, href }: ServiceItemProps) {
     const router = useRouter();
     const containerRef = useRef<HTMLDivElement>(null);
-    const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isHovered, setIsHovered] = useState(false);
+
+    // Store mouse position in state for the "snap-on-enter" logic
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
     const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
         if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        setMousePos({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        });
+    };
 
-        // Get mouse position relative to the container block
+    const handleMouseEnter = (e: MouseEvent<HTMLElement>) => {
+        if (!containerRef.current) return;
         const rect = containerRef.current.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        setPosition({ x, y });
+        // Update position BEFORE showing the image to ensure it snaps to cursor
+        setMousePos({ x, y });
+        setIsHovered(true);
     };
 
     return (
-        <div
+        <motion.div
             className="service-item"
             aria-label={`Service: ${name}`}
             ref={containerRef}
             onMouseMove={handleMouseMove}
-            onMouseEnter={() => setIsHovered(true)}
+            onMouseEnter={handleMouseEnter}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => {
                 if (href) router.push(href);
             }}
+            whileTap={{ scale: 0.98 }}
         >
             <div className="service-item__bg" aria-hidden="true"></div>
-            <div className="service-item__content" style={{ position: "relative", zIndex: 10 }}>
-                <h3
-                    className="service-item__title"
-                    style={{
-                        display: "inline-block",
-                        width: "fit-content",
-                        position: "relative",
-                        zIndex: 20
-                    }}
-                >
+            <div className="service-item__content">
+                <h3 className="service-item__title">
                     {name}
                 </h3>
                 <p className="service-item__desc">{desc}</p>
             </div>
-            <div
-                className="service-item__image"
-                aria-hidden="true"
-                style={{
-                    opacity: isHovered ? 1 : 0,
-                    transform: isHovered
-                        ? `translate3d(calc(${position.x}px - 50%), calc(${position.y}px - 50%), 0) scale(1) rotate(-4deg)`
-                        : `translate3d(calc(${position.x}px - 50%), calc(${position.y}px - 50%), 0) scale(0.9) rotate(0deg)`,
-                    zIndex: 100, // Ensure it's above everything
-                    pointerEvents: "none"
-                }}
-            >
-                <Image
-                    src={image}
-                    alt={`${name}`}
-                    fill
-                    style={{ objectFit: "cover" }}
-                />
-            </div>
-        </div>
+
+            <AnimatePresence>
+                {isHovered && (
+                    <motion.div
+                        className="service-item__image"
+                        aria-hidden="true"
+                        initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
+                        animate={{
+                            opacity: 1,
+                            scale: 1,
+                            rotate: -4,
+                            x: mousePos.x,
+                            y: mousePos.y
+                        }}
+                        exit={{ opacity: 0, scale: 0.8, rotate: 0 }}
+                        // Using initial={false} on the x/y part isn't direct here, 
+                        // but setting state before mount achieves the same result.
+                        style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            zIndex: 100,
+                            pointerEvents: "none",
+                        }}
+                        transition={{
+                            x: { type: "spring", damping: 25, stiffness: 150 },
+                            y: { type: "spring", damping: 25, stiffness: 150 },
+                            opacity: { duration: 0.2 },
+                            scale: { duration: 0.3, ease: "circOut" },
+                            rotate: { duration: 0.4, ease: "backOut" }
+                        }}
+                    >
+                        <Image
+                            src={image}
+                            alt={`${name}`}
+                            fill
+                            style={{ objectFit: "cover" }}
+                            sizes="200px"
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.div>
     );
 }

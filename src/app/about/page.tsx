@@ -45,7 +45,7 @@ export default function About() {
                     {/* Right content: Portrait Image */}
                     <div style={{ position: "relative", width: "100%", aspectRatio: "4/5", overflow: "hidden" }}>
                         <Image
-                            src="/images/about-image.jpg" // Using existing about image as portrait
+                            src="/images/about_image.jpg" // Using existing about image as portrait
                             alt="The creative face behind Neversmall Studios"
                             fill
                             style={{ objectFit: "cover" }}

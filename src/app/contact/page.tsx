@@ -127,7 +127,7 @@ export default function Contact() {
                     {/* Image Area */}
                     <div style={{ position: "relative", width: "90%", aspectRatio: "3/2", overflow: "hidden" }}>
                         <Image
-                            src="/images/about-image.jpg" // Using an existing project image
+                            src="/images/about_image.jpg" // Using an existing project image
                             alt="Contact Us Journey"
                             fill
                             style={{ objectFit: "cover" }}
