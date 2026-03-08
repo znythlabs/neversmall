@@ -192,7 +192,7 @@ export default function Navbar() {
                             <div className="menu-overlay__services-desktop">
                                 <div className="menu-overlay__services-list">
                                     {SERVICES_ITEMS.map((item, idx) => {
-                                        const isMarquee = item.label === "SOCIAL MANAGEMENT";
+                                        const isMarquee = false; // item.label === "SOCIAL MANAGEMENT";
                                         return (
                                             <motion.a
                                                 key={item.label}

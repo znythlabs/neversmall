@@ -1152,7 +1152,11 @@ button {
   display: inline-flex;
   position: relative;
   white-space: nowrap;
-  line-height: 1.25;
+  line-height: 1.1;
+  padding: 4px 0;
+  width: 100%;
+  white-space: normal;
+  text-align: left;
 }
 
 .menu-overlay__service-label-wrapper {
@@ -1319,7 +1323,8 @@ button {
   }
 
   .menu-overlay--home .menu-overlay__service-label {
-    font-size: 32px;
+    font-size: clamp(28px, 8vw, 36px);
+    line-height: 1.1;
   }
 
   /* Reactivate Marquee for mobile */
